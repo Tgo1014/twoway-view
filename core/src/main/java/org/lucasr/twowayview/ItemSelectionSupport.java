@@ -5,12 +5,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.v4.util.LongSparseArray;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
+import android.util.LongSparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.Checkable;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import static android.os.Build.VERSION_CODES.HONEYCOMB;
 
@@ -62,7 +63,6 @@ public class ItemSelectionSupport {
      * the <code>getChecked*</code> methods.
      *
      * @return The number of items currently selected
-     *
      * @see #getCheckedItemPosition()
      * @see #getCheckedItemPositions()
      * @see #getCheckedItemIds()
@@ -78,8 +78,7 @@ public class ItemSelectionSupport {
      *
      * @param position The item whose checked state to return
      * @return The item's checked state or <code>false</code> if choice mode
-     *         is invalid
-     *
+     * is invalid
      * @see #setChoiceMode(ChoiceMode)
      */
     public boolean isItemChecked(int position) {
@@ -95,8 +94,7 @@ public class ItemSelectionSupport {
      * mode has been set to {@link ChoiceMode#SINGLE}.
      *
      * @return The position of the currently checked item or
-     *         {@link #INVALID_POSITION} if nothing is selected
-     *
+     * {@link #INVALID_POSITION} if nothing is selected
      * @see #setChoiceMode(ChoiceMode)
      */
     public int getCheckedItemPosition() {
@@ -111,10 +109,10 @@ public class ItemSelectionSupport {
      * Returns the set of checked items in the list. The result is only valid if
      * the choice mode has not been set to {@link ChoiceMode#NONE}.
      *
-     * @return  A SparseBooleanArray which will return true for each call to
-     *          get(int position) where position is a position in the list,
-     *          or <code>null</code> if the choice mode is set to
-     *          {@link ChoiceMode#NONE}.
+     * @return A SparseBooleanArray which will return true for each call to
+     * get(int position) where position is a position in the list,
+     * or <code>null</code> if the choice mode is set to
+     * {@link ChoiceMode#NONE}.
      */
     public SparseBooleanArray getCheckedItemPositions() {
         if (mChoiceMode != ChoiceMode.NONE) {
@@ -130,9 +128,8 @@ public class ItemSelectionSupport {
      * has stable IDs.
      *
      * @return A new array which contains the id of each checked item in the
-     *         list.
-     *
-     * @see android.support.v7.widget.RecyclerView.Adapter#hasStableIds()
+     * list.
+     * @see androidx.recyclerview.widget.RecyclerView.Adapter#hasStableIds()
      */
     public long[] getCheckedItemIds() {
         if (mChoiceMode == ChoiceMode.NONE
@@ -156,7 +153,7 @@ public class ItemSelectionSupport {
      * {@link ChoiceMode#MULTIPLE}.
      *
      * @param position The item whose checked state is to be checked
-     * @param checked The new checked state for the item
+     * @param checked  The new checked state for the item
      */
     public void setItemChecked(int position, boolean checked) {
         if (mChoiceMode == ChoiceMode.NONE) {
@@ -256,7 +253,7 @@ public class ItemSelectionSupport {
      * {@link ChoiceMode#MULTIPLE}, the list allows any number of items to be chosen.
      *
      * @param choiceMode One of {@link ChoiceMode#NONE}, {@link ChoiceMode#SINGLE}, or
-     * {@link ChoiceMode#MULTIPLE}
+     *                   {@link ChoiceMode#MULTIPLE}
      */
     public void setChoiceMode(ChoiceMode choiceMode) {
         if (mChoiceMode == choiceMode) {
@@ -526,6 +523,10 @@ public class ItemSelectionSupport {
         @Override
         boolean performItemLongClick(RecyclerView parent, View view, int position, long id) {
             return true;
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         }
     }
 }
