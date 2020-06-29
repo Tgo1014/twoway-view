@@ -1,9 +1,10 @@
 package org.lucasr.twowayview;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.HapticFeedbackConstants;
 import android.view.SoundEffectConstants;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ItemClickSupport {
     /**
@@ -15,10 +16,10 @@ public class ItemClickSupport {
          * Callback method to be invoked when an item in the RecyclerView
          * has been clicked.
          *
-         * @param parent The RecyclerView where the click happened.
-         * @param view The view within the RecyclerView that was clicked
+         * @param parent   The RecyclerView where the click happened.
+         * @param view     The view within the RecyclerView that was clicked
          * @param position The position of the view in the adapter.
-         * @param id The row id of the item that was clicked.
+         * @param id       The row id of the item that was clicked.
          */
         void onItemClick(RecyclerView parent, View view, int position, long id);
     }
@@ -32,11 +33,10 @@ public class ItemClickSupport {
          * Callback method to be invoked when an item in the RecyclerView
          * has been clicked and held.
          *
-         * @param parent The RecyclerView where the click happened
-         * @param view The view within the RecyclerView that was clicked
+         * @param parent   The RecyclerView where the click happened
+         * @param view     The view within the RecyclerView that was clicked
          * @param position The position of the view in the list
-         * @param id The row id of the item that was clicked
-         *
+         * @param id       The row id of the item that was clicked
          * @return true if the callback consumed the long click, false otherwise
          */
         boolean onItemLongClick(RecyclerView parent, View view, int position, long id);
@@ -134,6 +134,10 @@ public class ItemClickSupport {
             }
 
             return false;
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         }
     }
 }
